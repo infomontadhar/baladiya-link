@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مديرية بلدية المدينة القديمة - النجف الأشرف</title>
+<meta name="description" content="حسابات التواصل الرسمية لمديرية بلدية المدينة القديمة - النجف الأشرف">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --teal-deep:#0E4F5C;
+    --teal-mid:#146A79;
+    --gold:#C9A227;
+    --gold-light:#E7C766;
+    --cream:#FAF6EC;
+    --paper:#FFFFFF;
+    --ink:#1C2224;
+    --muted:#767066;
+    --line:#E7E0CF;
+  }
+
+  *{box-sizing:border-box;}
+
+  html,body{
+    margin:0;
+    padding:0;
+    min-height:100%;
+    background:var(--cream);
+  }
+
+  body{
+    font-family:'IBM Plex Sans Arabic', sans-serif;
+    color:var(--ink);
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding:32px 16px 60px;
+    position:relative;
+    overflow-x:hidden;
+  }
+
+  /* subtle background tile pattern, referencing Najaf shrine tilework */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:
+      radial-gradient(circle at 2px 2px, rgba(14,79,92,0.07) 1.4px, transparent 1.4px);
+    background-size: 26px 26px;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .page{
+    position:relative;
+    z-index:1;
+    width:100%;
+    max-width:440px;
+  }
+
+  .card{
+    background:var(--paper);
+    border-radius:28px;
+    box-shadow:0 20px 50px rgba(14,79,92,0.14), 0 2px 8px rgba(0,0,0,0.04);
+    overflow:hidden;
+    border:1px solid var(--line);
+  }
+
+  /* ---------- Header ---------- */
+  .header{
+    position:relative;
+    padding:38px 28px 26px;
+    text-align:center;
+    background:linear-gradient(180deg, #FFFFFF 0%, #FBF8EF 100%);
+    overflow:hidden;
+  }
+
+  /* decorative dome/arch referencing the golden shrine of Najaf */
+  .arch-decor{
+    position:absolute;
+    top:-70px;
+    left:50%;
+    transform:translateX(-50%);
+    width:340px;
+    height:220px;
+    z-index:0;
+    opacity:0.9;
+  }
+
+  .eyebrow{
+    position:relative;
+    z-index:1;
+    font-size:12.5px;
+    letter-spacing:1px;
+    color:var(--gold);
+    font-weight:600;
+    margin:0 0 14px;
+    text-transform:none;
+  }
+
+  .logo-wrap{
+    position:relative;
+    z-index:1;
+    width:104px;
+    height:104px;
+    margin:0 auto 18px;
+    border-radius:50%;
+    background:var(--paper);
+    border:3px solid var(--gold);
+    box-shadow:0 8px 20px rgba(201,162,39,0.25);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+  }
+
+  .logo-wrap img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    padding:8px;
+  }
+
+  .logo-fallback{
+    font-family:'Cairo', sans-serif;
+    font-weight:800;
+    color:var(--teal-deep);
+    font-size:15px;
+    line-height:1.3;
+    text-align:center;
+  }
+
+  h1{
+    position:relative;
+    z-index:1;
+    font-family:'Cairo', sans-serif;
+    font-weight:800;
+    font-size:22px;
+    line-height:1.5;
+    margin:0 0 6px;
+    color:var(--teal-deep);
+  }
+
+  .divider{
+    position:relative;
+    z-index:1;
+    width:56px;
+    height:3px;
+    margin:14px auto 16px;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+    border-radius:2px;
+  }
+
+  .welcome{
+    position:relative;
+    z-index:1;
+    font-size:14.5px;
+    line-height:1.9;
+    color:var(--muted);
+    margin:0;
+    padding:0 6px;
+  }
+
+  /* ---------- Links ---------- */
+  .links{
+    padding:24px 22px 8px;
+    display:flex;
+    flex-direction:column;
+    gap:13px;
+  }
+
+  .link-btn{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    padding:15px 20px;
+    border-radius:16px;
+    border:1.5px solid var(--line);
+    background:var(--paper);
+    text-decoration:none;
+    color:var(--ink);
+    font-family:'IBM Plex Sans Arabic', sans-serif;
+    font-weight:600;
+    font-size:15px;
+    transition:transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    opacity:0;
+    animation:rise 0.5s ease forwards;
+  }
+
+  .link-btn:nth-of-type(1){animation-delay:0.05s;}
+  .link-btn:nth-of-type(2){animation-delay:0.11s;}
+  .link-btn:nth-of-type(3){animation-delay:0.17s;}
+  .link-btn:nth-of-type(4){animation-delay:0.23s;}
+  .link-btn:nth-of-type(5){animation-delay:0.29s;}
+
+  .link-btn:hover, .link-btn:focus-visible{
+    transform:translateY(-3px);
+    border-color:var(--gold);
+    box-shadow:0 10px 22px rgba(14,79,92,0.14);
+    background:linear-gradient(180deg,#FFFFFF, #FDFBF4);
+    outline:none;
+  }
+
+  .link-icon{
+    flex:0 0 auto;
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--teal-deep);
+    color:#fff;
+  }
+  .link-icon svg{width:20px; height:20px;}
+
+  .link-text{
+    flex:1;
+    text-align:right;
+  }
+  .link-text .label{display:block; font-size:15px;}
+  .link-text .sub{display:block; font-size:12px; font-weight:400; color:var(--muted); margin-top:2px;}
+
+  .link-arrow{
+    flex:0 0 auto;
+    color:var(--gold);
+    font-size:18px;
+  }
+
+  /* ---------- Footer ---------- */
+  .footer{
+    text-align:center;
+    padding:22px 20px 26px;
+  }
+
+  .footer .credit{
+    font-size:10.5px;
+    letter-spacing:0.4px;
+    color:#B7AF9C;
+    font-weight:500;
+  }
+
+  @keyframes rise{
+    from{opacity:0; transform:translateY(10px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .link-btn{animation:none; opacity:1;}
+    .link-btn:hover{transform:none;}
+  }
+
+  @media (max-width:380px){
+    .header{padding:32px 20px 22px;}
+    h1{font-size:19px;}
+    .links{padding:20px 16px 6px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="card">
+
+    <!-- ============ الترويسة: الشعار والاسم والترحيب ============ -->
+    <div class="header">
+
+      <!-- زخرفة القبة الذهبية (يمكن حذفها أو تعديلها بدون أي تأثير على باقي الصفحة) -->
+      <svg class="arch-decor" viewBox="0 0 340 220" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="domeGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#E7C766"/>
+            <stop offset="100%" stop-color="#C9A227"/>
+          </linearGradient>
+        </defs>
+        <path d="M70 220 C70 120 120 70 170 70 C220 70 270 120 270 220 Z" fill="url(#domeGrad)" opacity="0.14"/>
+        <path d="M100 220 C100 140 130 100 170 100 C210 100 240 140 240 220 Z" fill="url(#domeGrad)" opacity="0.20"/>
+        <circle cx="170" cy="60" r="7" fill="#C9A227" opacity="0.35"/>
+        <rect x="166" y="30" width="8" height="26" rx="2" fill="#C9A227" opacity="0.35"/>
+      </svg>
+
+      <p class="eyebrow">ديوان محافظة النجف الأشرف</p>
+
+      <!-- شعار الدائرة: استبدل logo.png بصورة الشعار الفعلية عند رفع الملفات (نفس مجلد الصفحة) -->
+      <div class="logo-wrap">
+        <img src="logo.png" alt="شعار مديرية بلدية المدينة القديمة"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="logo-fallback" style="display:none;">بلدية<br>المدينة القديمة</div>
+      </div>
+
+      <h1>مديرية بلدية المدينة القديمة</h1>
+      <div class="divider"></div>
+
+      <p class="welcome">
+        أهلاً وسهلاً بكم، للتواصل معنا عبر حساباتنا الرسمية ومتابعة آخر الأخبار والخدمات، يرجى الضغط على الرابط المناسب أدناه.
+      </p>
+    </div>
+
+    <!-- ============ الروابط ============ -->
+    <!-- لإضافة رابط جديد مستقبلاً: انسخ بلوك <a class="link-btn"> كامل وعدّل الرابط والنص والأيقونة -->
+    <div class="links">
+
+      <!-- فيسبوك -->
+      <a class="link-btn" href="https://www.facebook.com/share/1BpfmDhLrZ/?mibextid=wwXIfr" target="_blank" rel="noopener">
+        <span class="link-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.5l.4-3H13.5V8.5c0-.9.25-1.5 1.55-1.5H16.5V4.3C16.2 4.26 15.2 4.17 14 4.17c-2.4 0-4 1.46-4 4.14V10.5H7.5v3H10V21h3.5z"/></svg>
+        </span>
+        <span class="link-text">
+          <span class="label">فيسبوك</span>
+          <span class="sub">صفحتنا الرسمية</span>
+        </span>
+        <span class="link-arrow">←</span>
+      </a>
+
+      <!-- انستغرام -->
+      <a class="link-btn" href="https://www.instagram.com/baladiat_almadinat_alqadima?igsh=MXhiMmdvdTR1cjN3eA==" target="_blank" rel="noopener">
+        <span class="link-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg>
+        </span>
+        <span class="link-text">
+          <span class="label">انستغرام</span>
+          <span class="sub">تابعوا آخر الأخبار</span>
+        </span>
+        <span class="link-arrow">←</span>
+      </a>
+
+      <!-- تيك توك -->
+      <a class="link-btn" href="https://www.tiktok.com/@old.city.municipality?_r=1&_t=ZS-97pO0YK1mgn" target="_blank" rel="noopener">
+        <span class="link-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.3 2 1.7 3.6 3.7 3.9v2.6c-1.3 0-2.6-.4-3.7-1.1v6.4c0 3-2.5 5.4-5.5 5.4S5.5 17.8 5.5 14.8c0-2.9 2.3-5.2 5.1-5.4v2.7c-1.3.2-2.3 1.3-2.3 2.7 0 1.5 1.2 2.7 2.7 2.7s2.8-1.2 2.8-2.7V3h2.7z"/></svg>
+        </span>
+        <span class="link-text">
+          <span class="label">تيك توك</span>
+          <span class="sub">فيديوهات ولقطات من عملنا</span>
+        </span>
+        <span class="link-arrow">←</span>
+      </a>
+
+      <!-- البريد الالكتروني -->
+      <a class="link-btn" href="mailto:Oc@najaf.gov.iq">
+        <span class="link-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 6.5 12 13l8.5-6.5"/></svg>
+        </span>
+        <span class="link-text">
+          <span class="label">البريد الإلكتروني</span>
+          <span class="sub">Oc@najaf.gov.iq</span>
+        </span>
+        <span class="link-arrow">←</span>
+      </a>
+
+      <!-- رقم الشكاوى -->
+      <a class="link-btn" href="tel:07880006066">
+        <span class="link-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6.5 3.5c-1.7 0-3 1.3-3 3 0 8.3 6.7 15 15 15 1.7 0 3-1.3 3-3v-2.2c0-.5-.3-.9-.8-1l-3.6-.9c-.4-.1-.8 0-1.1.3l-1.3 1.3c-2-1-3.6-2.6-4.6-4.6l1.3-1.3c.3-.3.4-.7.3-1.1l-.9-3.6c-.1-.5-.5-.8-1-.8H6.5z"/></svg>
+        </span>
+        <span class="link-text">
+          <span class="label">خط الشكاوى</span>
+          <span class="sub" style="direction:ltr; display:inline-block;">07880006066</span>
+        </span>
+        <span class="link-arrow">←</span>
+      </a>
+
+    </div>
+
+    <!-- ============ التذييل ============ -->
+    <div class="footer">
+      <span class="credit">نظم المعلومات</span>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
